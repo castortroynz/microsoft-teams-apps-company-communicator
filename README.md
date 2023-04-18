@@ -1,6 +1,6 @@
 # Company Communicator App Template
 
-| [Documentation](https://github.com/castortroynz/microsoft-teams-apps-company-communicator/wiki) | [Deployment guide](https://github.com/cristianoag/microsoft-teams-apps-company-communicator/wiki/Deployment-Guide) | [Deployment guide powershell](https://github.com/cristianoag/microsoft-teams-apps-company-communicator/wiki/Deployment-guide-powershell)  | [Architecture](https://github.com/cristianoag/microsoft-teams-apps-company-communicator/wiki/Solution-overview) |
+| [Documentation](https://github.com/castortroynz/microsoft-teams-apps-company-communicator/Wiki) | [Deployment guide](https://github.com/cristianoag/microsoft-teams-apps-company-communicator/wiki/Deployment-Guide) | [Deployment guide powershell](https://github.com/cristianoag/microsoft-teams-apps-company-communicator/wiki/Deployment-guide-powershell)  | [Architecture](https://github.com/cristianoag/microsoft-teams-apps-company-communicator/wiki/Solution-overview) |
 | ---- | ---- | ---- | ---- |
 
 Company Communicator is a custom Teams app that enables corporate teams to create and send messages intended for multiple teams or large number of employees over chat allowing organization to reach employees right where they collaborate. Use this template for multiple scenarios, such as new initiative announcements, employee onboarding, modern learning and development, or organization-wide broadcasts. 
