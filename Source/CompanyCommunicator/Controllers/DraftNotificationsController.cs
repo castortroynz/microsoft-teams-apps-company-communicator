@@ -225,7 +225,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
             {
                 PartitionKey = NotificationDataTableNames.DraftNotificationsPartition,
                 RowKey = notification.Id,
-                Id = notification.Id,
+                NotificationId = notification.Id,
                 Title = notification.Title,
                 ImageLink = notification.ImageLink,
                 Summary = notification.Summary,

@@ -58,7 +58,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "123",
+                NotificationId = "123",
             };
 
             this.sendQueue
@@ -66,11 +66,11 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
                 .Returns(Task.CompletedTask);
 
             this.notificationDataRepository
-                .Setup(x => x.GetAsync(NotificationDataTableNames.SentNotificationsPartition, notification.Id))
+                .Setup(x => x.GetAsync(NotificationDataTableNames.SentNotificationsPartition, notification.NotificationId))
                 .ReturnsAsync(new NotificationDataEntity());
 
             // Act
-            Func<Task> task = async () => await activity.RunAsync((notification.Id, batch));
+            Func<Task> task = async () => await activity.RunAsync((notification.NotificationId, batch));
 
             // Assert
             await task.Should().NotThrowAsync();
@@ -96,7 +96,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
             };
 
             this.sendQueue
@@ -104,11 +104,11 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
                 .Returns(Task.CompletedTask);
 
             this.notificationDataRepository
-                .Setup(x => x.GetAsync(NotificationDataTableNames.SentNotificationsPartition, notification.Id))
+                .Setup(x => x.GetAsync(NotificationDataTableNames.SentNotificationsPartition, notification.NotificationId))
                 .ReturnsAsync(new NotificationDataEntity());
 
             // Act
-            Func<Task> task = async () => await activity.RunAsync((notification.Id, batch));
+            Func<Task> task = async () => await activity.RunAsync((notification.NotificationId, batch));
 
             // Assert
             await task.Should().NotThrowAsync();
@@ -134,11 +134,11 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
             };
 
             // Act
-            Func<Task> task1 = async () => await activity.RunAsync((notification.Id, null /*batch*/));
+            Func<Task> task1 = async () => await activity.RunAsync((notification.NotificationId, null /*batch*/));
             Func<Task> task2 = async () => await activity.RunAsync((null /*notification*/, batch));
             Func<Task> task3 = async () => await activity.RunAsync((null /*notification*/, null /*batch*/));
 

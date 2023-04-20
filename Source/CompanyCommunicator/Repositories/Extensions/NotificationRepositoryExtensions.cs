@@ -33,7 +33,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Repositories.Extensions
             {
                 PartitionKey = NotificationDataTableNames.DraftNotificationsPartition,
                 RowKey = newId,
-                Id = newId,
+                NotificationId = newId,
                 Title = notification.Title,
                 ImageLink = notification.ImageLink,
                 Summary = notification.Summary,

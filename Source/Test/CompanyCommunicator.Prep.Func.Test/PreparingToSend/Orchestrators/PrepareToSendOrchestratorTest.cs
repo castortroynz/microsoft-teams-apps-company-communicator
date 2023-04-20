@@ -35,9 +35,9 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             Mock<NotificationDataEntity> mockNotificationDataEntity = new Mock<NotificationDataEntity>();
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "123",
+                NotificationId = "123",
             };
-            var recipientsInfo = new RecipientsInfo(notificationDataEntity.Id)
+            var recipientsInfo = new RecipientsInfo(notificationDataEntity.NotificationId)
             {
                 HasRecipientsPendingInstallation = true,
             };
@@ -85,9 +85,9 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             Mock<NotificationDataEntity> mockNotificationDataEntity = new Mock<NotificationDataEntity>();
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "123",
+                NotificationId = "123",
             };
-            var recipientsInfo = new RecipientsInfo(notificationDataEntity.Id)
+            var recipientsInfo = new RecipientsInfo(notificationDataEntity.NotificationId)
             {
                 HasRecipientsPendingInstallation = false,
             };
@@ -134,7 +134,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             Mock<NotificationDataEntity> mockNotificationDataEntity = new Mock<NotificationDataEntity>();
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "123",
+                NotificationId = "123",
             };
             RecipientsInfo recipientsInfo = default;
 
@@ -180,7 +180,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             Mock<NotificationDataEntity> mockNotificationDataEntity = new Mock<NotificationDataEntity>();
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "123",
+                NotificationId = "123",
             };
 
             this.mockContext
@@ -225,7 +225,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             Mock<NotificationDataEntity> mockNotificationDataEntity = new Mock<NotificationDataEntity>();
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "123",
+                NotificationId = "123",
             };
             RecipientsInfo recipientsInfo = default;
             this.mockContext
@@ -270,9 +270,9 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             Mock<NotificationDataEntity> mockNotificationDataEntity = new Mock<NotificationDataEntity>();
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
             };
-            var recipientsInfo = new RecipientsInfo(notificationDataEntity.Id)
+            var recipientsInfo = new RecipientsInfo(notificationDataEntity.NotificationId)
             {
                 HasRecipientsPendingInstallation = true,
             };

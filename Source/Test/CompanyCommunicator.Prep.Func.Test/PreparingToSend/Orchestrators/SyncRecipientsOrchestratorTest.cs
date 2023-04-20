@@ -36,10 +36,10 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             // Arrange
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
                 AllUsers = true,
             };
-            var recipientsInfo = new RecipientsInfo(notificationDataEntity.Id)
+            var recipientsInfo = new RecipientsInfo(notificationDataEntity.NotificationId)
             {
                 HasRecipientsPendingInstallation = true,
             };
@@ -74,11 +74,11 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             // Arrange
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
                 AllUsers = false,
                 Rosters = new List<string>() { "roaster", "roaster1" },
             };
-            var recipientsInfo = new RecipientsInfo(notificationDataEntity.Id)
+            var recipientsInfo = new RecipientsInfo(notificationDataEntity.NotificationId)
             {
                 HasRecipientsPendingInstallation = false,
             };
@@ -116,12 +116,12 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             // Arrange
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
                 AllUsers = false,
                 Rosters = new List<string>(),
                 Groups = new List<string>() { "Group1", "Group2" },
             };
-            var recipientsInfo = new RecipientsInfo(notificationDataEntity.Id)
+            var recipientsInfo = new RecipientsInfo(notificationDataEntity.NotificationId)
             {
                 HasRecipientsPendingInstallation = false,
             };
@@ -159,7 +159,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             // Arrange
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
                 AllUsers = false,
                 Rosters = new List<string>(),
                 Groups = new List<string>(),
@@ -193,7 +193,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             // Arrange
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
                 AllUsers = false,
                 Rosters = new List<string>(),
                 Groups = new List<string>(),
@@ -209,7 +209,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             Func<Task> task = async () => await SyncRecipientsOrchestrator.RunOrchestrator(this.mockContext.Object, this.mockLogger.Object);
 
             // Assert
-            await task.Should().ThrowAsync<ArgumentException>($"Invalid audience select for notification id: {notificationDataEntity.Id}");
+            await task.Should().ThrowAsync<ArgumentException>($"Invalid audience select for notification id: {notificationDataEntity.NotificationId}");
             this.mockContext.Verify(x => x.CallActivityWithRetryAsync(It.Is<string>(x => x.Equals(FunctionNames.UpdateNotificationStatusActivity)), It.IsAny<RetryOptions>(), It.IsAny<object>()), Times.Once);
         }
     }

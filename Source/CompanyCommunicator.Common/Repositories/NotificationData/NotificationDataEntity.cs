@@ -24,7 +24,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
         /// <summary>
         /// Gets or sets the id of the notification.
         /// </summary>
-        public string Id { get; set; }
+        public string NotificationId { get; set; }
 
         /// <summary>
         /// Gets or sets the title text of the notification's content.

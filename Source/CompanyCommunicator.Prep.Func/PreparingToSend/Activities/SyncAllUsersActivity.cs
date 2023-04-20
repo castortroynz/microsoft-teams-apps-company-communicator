@@ -81,7 +81,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
             }
 
             // Sync all users.
-            await this.SyncAllUsers(notification.Id);
+            await this.SyncAllUsers(notification.NotificationId);
 
             // Get users.
             var users = await this.userDataRepository.GetAllAsync();
@@ -92,12 +92,12 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
 
             if (users.IsNullOrEmpty())
             {
-                return new RecipientsInfo(notification.Id);
+                return new RecipientsInfo(notification.NotificationId);
             }
 
             // Store in sent notification table.
             var recipients = users.Select(
-                user => user.CreateInitialSentNotificationDataEntity(partitionKey: notification.Id));
+                user => user.CreateInitialSentNotificationDataEntity(partitionKey: notification.NotificationId));
             await this.sentNotificationDataRepository.BatchInsertOrMergeAsync(recipients);
 
             // Store in batches and return batch info.

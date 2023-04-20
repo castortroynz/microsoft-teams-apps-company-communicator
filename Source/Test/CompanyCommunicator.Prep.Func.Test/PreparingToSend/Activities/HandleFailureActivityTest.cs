@@ -54,7 +54,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             var activity = this.GetHandleFailureActivity();
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "1",
+                NotificationId = "1",
             };
             this.notificationDataRepository
                 .Setup(x => x.SaveExceptionInNotificationDataEntityAsync(It.IsAny<string>(), It.IsAny<string>()))
@@ -65,7 +65,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
 
             // Assert
             await task.Should().NotThrowAsync();
-            this.notificationDataRepository.Verify(x => x.SaveExceptionInNotificationDataEntityAsync(It.Is<string>(x => x.Equals(notificationDataEntity.Id)), It.IsAny<string>()));
+            this.notificationDataRepository.Verify(x => x.SaveExceptionInNotificationDataEntityAsync(It.Is<string>(x => x.Equals(notificationDataEntity.NotificationId)), It.IsAny<string>()));
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             var activity = this.GetHandleFailureActivity();
             NotificationDataEntity notificationDataEntity = new NotificationDataEntity()
             {
-                Id = "1",
+                NotificationId = "1",
             };
 
             this.notificationDataRepository
@@ -95,7 +95,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             await task1.Should().ThrowAsync<ArgumentNullException>("notification is null");
             await task2.Should().ThrowAsync<ArgumentNullException>("exception is null");
             await task3.Should().ThrowAsync<ArgumentNullException>("notification and excepion are null");
-            this.notificationDataRepository.Verify(x => x.SaveExceptionInNotificationDataEntityAsync(It.Is<string>(x => x.Equals(notificationDataEntity.Id)), It.IsAny<string>()), Times.Never());
+            this.notificationDataRepository.Verify(x => x.SaveExceptionInNotificationDataEntityAsync(It.Is<string>(x => x.Equals(notificationDataEntity.NotificationId)), It.IsAny<string>()), Times.Never());
         }
 
         /// <summary>

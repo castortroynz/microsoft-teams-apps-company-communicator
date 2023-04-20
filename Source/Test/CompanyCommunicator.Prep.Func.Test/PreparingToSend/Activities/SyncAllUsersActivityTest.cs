@@ -83,7 +83,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId1",
+                NotificationId = "notificationId1",
             };
             (IEnumerable<User>, string) tuple = (new List<User>() { new User() { Id = "101", UserType = UserType.Member } }, deltaLink);
             this.userDataRepository
@@ -139,7 +139,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId1",
+                NotificationId = "notificationId1",
             };
             (IEnumerable<User>, string) tuple = (new List<User>() { new User() { Id = "101", UserType = "Guest" } }, deltaLink);
             this.userDataRepository
@@ -190,7 +190,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId1",
+                NotificationId = "notificationId1",
             };
             (IEnumerable<User>, string) tuple = (new List<User>() { new User() { Id = "101", UserType = "Guest" } }, deltaLink);
             this.userDataRepository
@@ -238,7 +238,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             IEnumerable<UserDataEntity> userDataResponse = null;
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId1",
+                NotificationId = "notificationId1",
             };
             (IEnumerable<User>, string) tuple = (new List<User>() { new User() { Id = "101", UserType = "Guest" } }, deltaLink);
             this.userDataRepository
@@ -289,7 +289,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId1",
+                NotificationId = "notificationId1",
             };
             this.userDataRepository
                 .Setup(x => x.GetDeltaLinkAsync())
@@ -329,7 +329,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId1",
+                NotificationId = "notificationId1",
             };
             var userData = new UserDataEntity() { AadId = "101" };
 
@@ -384,7 +384,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             {
                new UserDataEntity() { Name = "user1", UserType = UserType.Guest },
             };
-            var notification = new NotificationDataEntity() { Id = "notificationId1" };
+            var notification = new NotificationDataEntity() { NotificationId = "notificationId1" };
             var tuple = (new List<User>() { new User() { Id = "101", UserType = UserType.Member } }, string.Empty);
 
             this.userDataRepository

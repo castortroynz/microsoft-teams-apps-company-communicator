@@ -101,7 +101,7 @@ namespace Microsoft.Teams.App.CompanyCommunicator.Common.Test.Repositories.Notif
             mockRepository.Setup(t => t.GetAsync(NotificationDataTableNames.SentNotificationsPartition, testEntityId))
                 .Returns(Task.FromResult(new NotificationDataEntity
                 {
-                    Id = testEntityId,
+                    NotificationId = testEntityId,
                     ErrorMessage = testData.InitialMessage,
                 }));
             mockRepository.Setup(t => t.CreateOrUpdateAsync(It.IsAny<NotificationDataEntity>())).Returns(Task.CompletedTask);
@@ -149,7 +149,7 @@ namespace Microsoft.Teams.App.CompanyCommunicator.Common.Test.Repositories.Notif
             mockRepository.Setup(t => t.GetAsync(NotificationDataTableNames.SentNotificationsPartition, testEntityId))
                 .Returns(Task.FromResult(new NotificationDataEntity
                 {
-                    Id = testEntityId,
+                    NotificationId = testEntityId,
                     WarningMessage = testData.InitialMessage,
                 }));
             mockRepository.Setup(t => t.CreateOrUpdateAsync(It.IsAny<NotificationDataEntity>())).Returns(Task.CompletedTask);

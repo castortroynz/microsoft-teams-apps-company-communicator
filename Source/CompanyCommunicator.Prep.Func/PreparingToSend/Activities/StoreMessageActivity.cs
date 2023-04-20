@@ -53,7 +53,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
             {
                 PartitionKey = NotificationDataTableNames.SendingNotificationsPartition,
                 RowKey = notification.RowKey,
-                NotificationId = notification.Id,
+                NotificationId = notification.NotificationId,
                 Content = serializedContent,
             };
 

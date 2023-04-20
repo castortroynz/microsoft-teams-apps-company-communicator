@@ -59,7 +59,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             Mock<ILogger> logger = new Mock<ILogger>();
             NotificationDataEntity notificationData = new NotificationDataEntity()
             {
-                Id = notificationId,
+                NotificationId = notificationId,
             };
             this.notificationDataRepository
                 .Setup(x => x.GetAsync(It.IsAny<string>(), It.IsAny<string>()))

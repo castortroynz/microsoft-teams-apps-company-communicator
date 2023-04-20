@@ -50,7 +50,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             // Arrange
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "123",
+                NotificationId = "123",
             };
             var activityContext = this.GetStoreMessageActivity();
             AdaptiveCard adaptiveCard = new AdaptiveCard("1.2");
@@ -66,8 +66,8 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
 
             // Assert
             await task.Should().NotThrowAsync();
-            this.adaptiveCardCreator.Verify(x => x.CreateAdaptiveCard(It.Is<NotificationDataEntity>(x => x.Id == notification.Id)));
-            this.sendingNotificationDataRepository.Verify(x => x.CreateOrUpdateAsync(It.Is<SendingNotificationDataEntity>(x => x.NotificationId == notification.Id)));
+            this.adaptiveCardCreator.Verify(x => x.CreateAdaptiveCard(It.Is<NotificationDataEntity>(x => x.Id == notification.NotificationId)));
+            this.sendingNotificationDataRepository.Verify(x => x.CreateOrUpdateAsync(It.Is<SendingNotificationDataEntity>(x => x.NotificationId == notification.NotificationId)));
         }
 
         /// <summary>

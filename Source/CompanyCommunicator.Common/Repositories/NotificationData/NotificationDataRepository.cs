@@ -145,7 +145,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
                 {
                     PartitionKey = NotificationDataTableNames.SentNotificationsPartition,
                     RowKey = newSentNotificationId,
-                    Id = newSentNotificationId,
+                    NotificationId = newSentNotificationId,
                     Title = draftNotificationEntity.Title,
                     ImageLink = draftNotificationEntity.ImageLink,
                     Summary = draftNotificationEntity.Summary,
@@ -205,7 +205,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
                 {
                     PartitionKey = NotificationDataTableNames.DraftNotificationsPartition,
                     RowKey = newId,
-                    Id = newId,
+                    NotificationId = newId,
                     Title = notificationEntity.Title,
                     ImageLink = notificationEntity.ImageLink,
                     Summary = notificationEntity.Summary,

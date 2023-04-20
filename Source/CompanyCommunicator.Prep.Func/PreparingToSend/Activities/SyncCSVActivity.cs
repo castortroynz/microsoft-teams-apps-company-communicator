@@ -120,7 +120,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
             log.LogDebug("About to convert to recipients.");
 
             // Convert to Recipients
-            var recipients = await this.GetRecipientsAsync(notification.Id, users);
+            var recipients = await this.GetRecipientsAsync(notification.NotificationId, users);
             log.LogDebug("CSV Users converted to recipients.");
 
             log.LogDebug("About to store the list of recipients on the database.");

@@ -68,7 +68,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             IEnumerable<string> roasters = new List<string>() { "teamId1", "teamId2" };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
                 Rosters = roasters,
                 TeamsInString = "['teamId1','teamId2']",
             };
@@ -101,7 +101,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             this.sentNotificationDataRepository.Verify(
                 x => x.BatchInsertOrMergeAsync(It.Is<IEnumerable<SentNotificationDataEntity>>(
                 x => x.Count() == 2)), Times.Once);
-            this.notificationDataRepository.Verify(x => x.SaveWarningInNotificationDataEntityAsync(It.Is<string>(x => x.Equals(notification.Id)), It.IsAny<string>()), Times.Never());
+            this.notificationDataRepository.Verify(x => x.SaveWarningInNotificationDataEntityAsync(It.Is<string>(x => x.Equals(notification.NotificationId)), It.IsAny<string>()), Times.Never());
             this.recipientsService.Verify(x => x.BatchRecipients(It.IsAny<IEnumerable<SentNotificationDataEntity>>()), Times.Once);
         }
 
@@ -117,7 +117,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             IEnumerable<string> roasters = new List<string>() { "teamId1", "teamId2" };
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "123",
+                NotificationId = "123",
                 Rosters = roasters,
                 TeamsInString = "['teamId1','teamId2']",
             };
@@ -145,7 +145,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             this.recipientsService.Verify(x => x.BatchRecipients(It.IsAny<IEnumerable<SentNotificationDataEntity>>()), Times.Once);
 
             // Warn message should be logged once for "teamId2".
-            this.notificationDataRepository.Verify(x => x.SaveWarningInNotificationDataEntityAsync(It.Is<string>(x => x.Equals(notification.Id)), It.IsAny<string>()), Times.Once);
+            this.notificationDataRepository.Verify(x => x.SaveWarningInNotificationDataEntityAsync(It.Is<string>(x => x.Equals(notification.NotificationId)), It.IsAny<string>()), Times.Once);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
             var activityContext = this.GetSyncTamActivity();
             NotificationDataEntity notification = new NotificationDataEntity()
             {
-                Id = "notificationId",
+                NotificationId = "notificationId",
             };
             IEnumerable<TeamDataEntity> teamData = new List<TeamDataEntity>();
             this.teamDataRepository.Setup(x => x.GetTeamDataEntitiesByIdsAsync(It.IsAny<IEnumerable<string>>())).ReturnsAsync(teamData);
