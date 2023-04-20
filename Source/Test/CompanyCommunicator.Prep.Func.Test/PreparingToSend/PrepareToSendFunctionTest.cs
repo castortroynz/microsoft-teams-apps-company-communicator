@@ -97,7 +97,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test
             // Assert
             await task.Should().NotThrowAsync();
             this.notificationDataRepository.Verify(x => x.GetAsync(It.Is<string>(x => x.Equals(NotificationDataTableNames.SentNotificationsPartition)), It.Is<string>(x => x.Equals(messageContent.NotificationId))), Times.Once());
-            this.starter.Verify(x => x.StartNewAsync(It.Is<string>(x => x.Equals(FunctionNames.PrepareToSendOrchestrator)), It.Is<NotificationDataEntity>(x => x.Id == sentNotificationDataEntity.NotificationId)), Times.Once());
+            this.starter.Verify(x => x.StartNewAsync(It.Is<string>(x => x.Equals(FunctionNames.PrepareToSendOrchestrator)), It.Is<NotificationDataEntity>(x => x.NotificationId == sentNotificationDataEntity.NotificationId)), Times.Once());
         }
 
         /// <summary>

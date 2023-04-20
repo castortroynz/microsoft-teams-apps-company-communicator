@@ -298,7 +298,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Test.Controllers
             var sentNotificationSummary = sentNotificationSummaryList.FirstOrDefault();
 
             // Assert
-            Assert.Equal(notification.Id, sentNotificationSummary.Id);
+            Assert.Equal(notification.NotificationId, sentNotificationSummary.Id);
             Assert.Equal(notification.Title, sentNotificationSummary.Title);
             Assert.Equal(notification.SentDate, sentNotificationSummary.SentDate);
             Assert.Equal(notification.Failed, sentNotificationSummary.Failed);
@@ -393,7 +393,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Test.Controllers
             var sentNotification = (SentNotification)((ObjectResult)result).Value;
 
             // Assert
-            Assert.Equal(notificationEntity.Id, sentNotification.Id);
+            Assert.Equal(notificationEntity.NotificationId, sentNotification.Id);
             Assert.Equal(notificationEntity.Title, sentNotification.Title);
             Assert.Equal(notificationEntity.ImageLink, sentNotification.ImageLink);
             Assert.Equal(notificationEntity.Summary, sentNotification.Summary);
@@ -433,7 +433,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Test.Controllers
         {
             return new NotificationDataEntity()
             {
-                Id = "id",
+                NotificationId = "id",
                 Title = "title",
                 ImageLink = "imageLink",
                 Summary = "summary",

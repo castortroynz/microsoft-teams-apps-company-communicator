@@ -672,7 +672,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Test.Controllers
         {
             // Arrange
             var controller = this.GetDraftNotificationsController();
-            var notificationEntityList = new List<NotificationDataEntity>() { new NotificationDataEntity() { Id = "notificationId", Title = "notificationTitle" } };
+            var notificationEntityList = new List<NotificationDataEntity>() { new NotificationDataEntity() { NotificationId = "notificationId", Title = "notificationTitle" } };
             var notificationEntity = notificationEntityList.FirstOrDefault();
             this.notificationDataRepository.Setup(x => x.GetAllDraftNotificationsAsync()).ReturnsAsync(notificationEntityList);
 
@@ -693,7 +693,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Test.Controllers
         {
             // Arrange
             var controller = this.GetDraftNotificationsController();
-            var notificationEntityList = new List<NotificationDataEntity>() { new NotificationDataEntity() { Id = "notificationId", Title = "notificationTitle" } };
+            var notificationEntityList = new List<NotificationDataEntity>() { new NotificationDataEntity() { NotificationId = "notificationId", Title = "notificationTitle" } };
             var notificationEntity = notificationEntityList.FirstOrDefault();
             this.notificationDataRepository.Setup(x => x.GetAllDraftNotificationsAsync()).ReturnsAsync(notificationEntityList);
 
@@ -703,7 +703,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Test.Controllers
             var draftNotificationSummary = draftNotificationSummaryList.FirstOrDefault();
 
             // Assert
-            Assert.Equal(draftNotificationSummary.Id, notificationEntity.Id);
+            Assert.Equal(draftNotificationSummary.Id, notificationEntity.NotificationId);
             Assert.Equal(draftNotificationSummary.Title, notificationEntity.Title);
         }
 

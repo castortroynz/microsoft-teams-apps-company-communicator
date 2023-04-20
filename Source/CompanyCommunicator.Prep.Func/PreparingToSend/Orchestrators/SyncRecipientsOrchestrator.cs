@@ -38,7 +38,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
             await context.CallActivityWithRetryAsync(
                 FunctionNames.UpdateNotificationStatusActivity,
                 FunctionSettings.DefaultRetryOptions,
-                (notification.Id, NotificationStatus.SyncingRecipients));
+                (notification.NotificationId, NotificationStatus.SyncingRecipients));
 
             // All users.
             if (notification.AllUsers)
@@ -52,13 +52,13 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
             // Members of specific teams.
             if (notification.Rosters.Any())
             {
-                return await FanOutFanInActivityAsync(context, FunctionNames.SyncTeamMembersActivity, notification.Rosters,  notification.Id);
+                return await FanOutFanInActivityAsync(context, FunctionNames.SyncTeamMembersActivity, notification.Rosters,  notification.NotificationId);
             }
 
             // Members of M365 groups, DG or SG.
             if (notification.Groups.Any())
             {
-                return await FanOutFanInActivityAsync(context, FunctionNames.SyncGroupMembersActivity, notification.Groups,  notification.Id);
+                return await FanOutFanInActivityAsync(context, FunctionNames.SyncGroupMembersActivity, notification.Groups,  notification.NotificationId);
             }
 
             // General channel of teams.
@@ -88,7 +88,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
             }
 
             // Invalid audience.
-            var errorMessage = $"Invalid audience select for notification id: {notification.Id}";
+            var errorMessage = $"Invalid audience select for notification id: {notification.NotificationId}";
             log.LogError(errorMessage);
             throw new ArgumentException(errorMessage);
         }

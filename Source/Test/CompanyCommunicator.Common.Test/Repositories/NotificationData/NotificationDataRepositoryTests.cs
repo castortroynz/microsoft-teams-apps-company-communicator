@@ -111,7 +111,7 @@ namespace Microsoft.Teams.App.CompanyCommunicator.Common.Test.Repositories.Notif
 
             // Assert
             mockRepository.Verify(t => t.CreateOrUpdateAsync(It.Is<NotificationDataEntity>(e =>
-                e.Id == testEntityId &&
+                e.NotificationId == testEntityId &&
                 e.Status == NotificationStatus.Failed.ToString())));
 
             if (testData.ShouldUpdateMessage)
@@ -159,7 +159,7 @@ namespace Microsoft.Teams.App.CompanyCommunicator.Common.Test.Repositories.Notif
 
             // Assert
             mockRepository.Verify(t => t.CreateOrUpdateAsync(It.Is<NotificationDataEntity>(e =>
-                e.Id == testEntityId)));
+                e.NotificationId == testEntityId)));
 
             if (testData.ShouldUpdateMessage)
             {

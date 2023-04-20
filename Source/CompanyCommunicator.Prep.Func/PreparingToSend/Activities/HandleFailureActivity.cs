@@ -58,7 +58,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
 
             var errorMessage = this.localizer.GetString("FailtoPrepareMessageFormat", input.exception.Message);
             await this.notificationDataRepository
-                .SaveExceptionInNotificationDataEntityAsync(input.notification.Id, errorMessage);
+                .SaveExceptionInNotificationDataEntityAsync(input.notification.NotificationId, errorMessage);
         }
     }
 }

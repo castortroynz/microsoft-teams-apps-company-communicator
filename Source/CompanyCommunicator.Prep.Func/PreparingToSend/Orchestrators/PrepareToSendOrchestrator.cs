@@ -44,7 +44,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
 
             if (!context.IsReplaying)
             {
-                log.LogInformation($"Start to prepare to send the notification {notificationDataEntity.Id}!");
+                log.LogInformation($"Start to prepare to send the notification {notificationDataEntity.NotificationId}!");
             }
 
             try
@@ -96,22 +96,22 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.PreparingToSend
                 await context.CallActivityWithRetryAsync(
                     FunctionNames.UpdateNotificationStatusActivity,
                     FunctionSettings.DefaultRetryOptions,
-                    (notificationDataEntity.Id, NotificationStatus.Sending));
+                    (notificationDataEntity.NotificationId, NotificationStatus.Sending));
 
                 // Update Total recipient count.
                 await context.CallActivityWithRetryAsync(
                     FunctionNames.DataAggregationTriggerActivity,
                     FunctionSettings.DefaultRetryOptions,
-                    (notificationDataEntity.Id, recipientsInfo.TotalRecipientCount));
+                    (notificationDataEntity.NotificationId, recipientsInfo.TotalRecipientCount));
 
                 // Fan-out/ Fan-in send queue orchestrator.
                 await FanOutFanInSubOrchestratorAsync(context, FunctionNames.SendQueueOrchestrator, recipientsInfo);
 
-                log.LogInformation($"PrepareToSendOrchestrator successfully completed for notification: {notificationDataEntity.Id}!");
+                log.LogInformation($"PrepareToSendOrchestrator successfully completed for notification: {notificationDataEntity.NotificationId}!");
             }
             catch (Exception ex)
             {
-                var errorMessage = $"PrepareToSendOrchestrator failed for notification: {notificationDataEntity.Id}. Exception Message: {ex.Message}";
+                var errorMessage = $"PrepareToSendOrchestrator failed for notification: {notificationDataEntity.NotificationId}. Exception Message: {ex.Message}";
                 log.LogError(ex, errorMessage);
 
                 await context.CallActivityWithRetryAsync(

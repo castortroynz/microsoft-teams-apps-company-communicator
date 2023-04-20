@@ -37,7 +37,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Export.Orchestrator
 
             if (!context.IsReplaying)
             {
-                log.LogInformation($"Start to export the notification {sentNotificationDataEntity.Id}!");
+                log.LogInformation($"Start to export the notification {sentNotificationDataEntity.NotificationId}!");
             }
 
             try
@@ -81,7 +81,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Export.Orchestrator
                 var consentId = await context.CallActivityWithRetryAsync<string>(
                     FunctionNames.SendFileCardActivity,
                     FunctionSettings.DefaultRetryOptions,
-                    (exportRequiredData.UserId, exportRequiredData.NotificationDataEntity.Id, exportDataEntity.FileName));
+                    (exportRequiredData.UserId, exportRequiredData.NotificationDataEntity.NotificationId, exportDataEntity.FileName));
 
                 if (!context.IsReplaying)
                 {
@@ -95,11 +95,11 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Export.Orchestrator
                     FunctionSettings.DefaultRetryOptions,
                     exportDataEntity);
 
-                log.LogInformation($"ExportOrchestration is successful for notification id:{sentNotificationDataEntity.Id}!");
+                log.LogInformation($"ExportOrchestration is successful for notification id:{sentNotificationDataEntity.NotificationId}!");
             }
             catch (Exception ex)
             {
-                log.LogError(ex, $"Failed to export notification {sentNotificationDataEntity.Id} : {ex.Message}");
+                log.LogError(ex, $"Failed to export notification {sentNotificationDataEntity.NotificationId} : {ex.Message}");
                 await context.CallActivityWithRetryAsync(
                     FunctionNames.HandleExportFailureActivity,
                     FunctionSettings.DefaultRetryOptions,

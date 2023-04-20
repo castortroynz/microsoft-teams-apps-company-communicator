@@ -293,7 +293,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
             {
                 var summary = new DraftNotificationSummary
                 {
-                    Id = notificationEntity.Id,
+                    Id = notificationEntity.NotificationId,
                     Title = notificationEntity.Title,
                 };
 
@@ -317,7 +317,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
             {
                 var summary = new DraftNotificationSummary
                 {
-                    Id = notificationEntity.Id,
+                    Id = notificationEntity.NotificationId,
                     Title = notificationEntity.Title,
                     ScheduledDate = notificationEntity.ScheduledDate,
                 };
@@ -345,7 +345,8 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
             {
                 var summary = new DraftNotificationSummary
                 {
-                    Id = notificationEntity.Id,
+                    Id = notificationEntity.NotificationId,
+                    
                     Title = notificationEntity.Title,
                     ScheduledDate = notificationEntity.ScheduledDate,
                 };
@@ -373,7 +374,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
             {
                 var summary = new DraftNotificationSummary
                 {
-                    Id = notificationEntity.Id,
+                    Id = notificationEntity.NotificationId,
                     Title = notificationEntity.Title,
                 };
 
@@ -408,7 +409,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
 
             var result = new DraftNotification
             {
-                Id = notificationEntity.Id,
+                Id = notificationEntity.NotificationId,
                 Title = notificationEntity.Title,
                 ImageLink = notificationEntity.ImageLink,
                 Summary = notificationEntity.Summary,

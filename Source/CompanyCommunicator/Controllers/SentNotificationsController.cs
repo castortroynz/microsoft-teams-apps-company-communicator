@@ -175,7 +175,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
             {
                 var summary = new SentNotificationSummary
                 {
-                    Id = notificationEntity.Id,
+                    Id = notificationEntity.NotificationId,
                     Title = notificationEntity.Title,
                     CreatedDateTime = notificationEntity.CreatedDate,
                     SentDate = notificationEntity.SentDate,
@@ -210,7 +210,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
             {
                 var summary = new SentNotificationSummary
                 {
-                    Id = notificationEntity.Id,
+                    Id = notificationEntity.NotificationId,
                     Title = notificationEntity.Title,
                     CreatedDateTime = notificationEntity.CreatedDate,
                     SentDate = notificationEntity.SentDate,
@@ -455,7 +455,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Controllers
 
             var result = new SentNotification
             {
-                Id = notificationEntity.Id,
+                Id = notificationEntity.NotificationId,
                 Title = notificationEntity.Title,
                 ImageLink = notificationEntity.ImageLink,
                 Summary = notificationEntity.Summary,

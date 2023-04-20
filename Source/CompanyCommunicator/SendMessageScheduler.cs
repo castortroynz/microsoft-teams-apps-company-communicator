@@ -93,7 +93,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
                 foreach (var notificationEntity in notificationEntities)
                 {
                     this.smslogger.LogInformation("[CC Scheduler] sending notification: {0}", notificationEntity.Title);
-                    this.SendNotification(notificationEntity.Id);
+                    this.SendNotification(notificationEntity.NotificationId);
                 }
             }
             catch (Exception ex)

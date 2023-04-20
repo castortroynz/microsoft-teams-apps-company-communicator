@@ -66,7 +66,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Prep.Func.Test.PreparingToSen
 
             // Assert
             await task.Should().NotThrowAsync();
-            this.adaptiveCardCreator.Verify(x => x.CreateAdaptiveCard(It.Is<NotificationDataEntity>(x => x.Id == notification.NotificationId)));
+            this.adaptiveCardCreator.Verify(x => x.CreateAdaptiveCard(It.Is<NotificationDataEntity>(x => x.NotificationId == notification.NotificationId)));
             this.sendingNotificationDataRepository.Verify(x => x.CreateOrUpdateAsync(It.Is<SendingNotificationDataEntity>(x => x.NotificationId == notification.NotificationId)));
         }
 
