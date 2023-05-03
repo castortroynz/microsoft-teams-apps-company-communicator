@@ -35,7 +35,7 @@ const minutes = ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50
 const coeff = 1000 * 60 * 5;
 
 //max size of the card 
-const maxCardSize = 30720;
+const maxCardSize = 2097152;
 
 type dropdownItem = {
     key: string,
@@ -173,7 +173,7 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
             selectedTeamsNum: 0,
             selectedRostersNum: 0,
             selectedGroupsNum: 0,
-            selectedRadioBtn: "teams",
+            selectedRadioBtn: "csv",
             selectedTeams: [],
             selectedRosters: [],
             selectedGroups: [],
@@ -783,6 +783,7 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
                                             onCheckedValueChange={this.onGroupSelected}
                                             vertical={true}
                                             items={[
+                                                /**
                                                 {
                                                     name: "teams",
                                                     key: "teams",
@@ -919,10 +920,11 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
                                                         }
                                                     },
                                                 },
+                                                */
                                                 {
                                                     name: "csv",
                                                     key: "csv",
-                                                    disabled: (this.targetingEnabled && !isMaster),
+                                                    //disabled: (this.targetingEnabled && !isMaster),
                                                     value: "csv",
                                                     label: this.localize("SendToCSV"),
                                                     children: (Component, { name, ...props }) => {
@@ -1055,12 +1057,14 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
     //the targetingmode and if the user is a master admin or not
     private radioControl() {
 
-        var opName = "teams";
+        var opName = "csv";
         var isMaster = this.isMasterAdmin(this.masterAdminUpns, this.state.userPrincipalName);
 
+        /**
         if (this.targetingEnabled && !isMaster) {
             opName = "groups";
         }
+        */
         
         this.setState({
             selectedRadioBtn: opName,
