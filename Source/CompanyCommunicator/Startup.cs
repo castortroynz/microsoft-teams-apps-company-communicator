@@ -104,16 +104,8 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
                     botFilterMiddlewareOptions.AllowedTenants =
                         configuration.GetValue<string>("AllowedTenants");
                 });
-            services.AddOptions<RepositoryOptions>()
-                .Configure<IConfiguration>((repositoryOptions, configuration) =>
-                {
-                    repositoryOptions.StorageAccountConnectionString =
-                        configuration.GetValue<string>("StorageAccountConnectionString");
-
-                    // Setting this to true because the main application should ensure that all
-                    // tables exist.
-                    repositoryOptions.EnsureTableExists = true;
-                });
+            services.AddRepositoryOptions(isItExpectedThatTableAlreadyExists: false);
+            
             services.AddOptions<DataQueueMessageOptions>()
                 .Configure<IConfiguration>((dataQueueMessageOptions, configuration) =>
                 {

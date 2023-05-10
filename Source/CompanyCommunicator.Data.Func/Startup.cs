@@ -37,18 +37,8 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Data.Func
         public override void Configure(IFunctionsHostBuilder builder)
         {
             // Add all options set from configuration values.
-            builder.Services.AddOptions<RepositoryOptions>()
-                .Configure<IConfiguration>((repositoryOptions, configuration) =>
-                {
-                    repositoryOptions.StorageAccountConnectionString =
-                        configuration.GetValue<string>("StorageAccountConnectionString");
-
-                    // Defaulting this value to true because the main app should ensure all
-                    // tables exist. It is here as a possible configuration setting in
-                    // case it needs to be set differently.
-                    repositoryOptions.EnsureTableExists =
-                        !configuration.GetValue<bool>("IsItExpectedThatTableAlreadyExists", true);
-                });
+            builder.Services.AddRepositoryOptions();
+            
             builder.Services.AddOptions<BotOptions>()
                .Configure<IConfiguration>((botOptions, configuration) =>
                {

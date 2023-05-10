@@ -24,7 +24,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Clients
         /// <param name="repositoryOptions">User data repository.</param>
         public StorageClientFactory(IOptions<RepositoryOptions> repositoryOptions)
         {
-            this.storageConnectionString = repositoryOptions.Value.StorageAccountConnectionString;
+            this.storageConnectionString = repositoryOptions.Value.BlobStorageAccountConnectionString;
         }
 
         /// <inheritdoc/>

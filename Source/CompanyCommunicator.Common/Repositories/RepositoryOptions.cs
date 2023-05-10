@@ -26,6 +26,12 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories
         public string StorageAccountConnectionString { get; set; }
 
         /// <summary>
+        /// Gets or sets the optional storage account connection string for 
+        /// Blob Storages when using CosmosDb as table storage
+        /// </summary>
+        public string BlobStorageAccountConnectionString { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether the table should be created
         /// if it does not already exist.
         /// </summary>

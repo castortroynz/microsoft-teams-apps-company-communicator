@@ -56,18 +56,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Send.Func
                     botOptions.GraphAppCertName = configuration.GetValue<string>("GraphAppCertName", string.Empty);
                     botOptions.UseCertificate = configuration.GetValue<bool>("UseCertificate", false);
                 });
-            builder.Services.AddOptions<RepositoryOptions>()
-                .Configure<IConfiguration>((repositoryOptions, configuration) =>
-                {
-                    repositoryOptions.StorageAccountConnectionString =
-                        configuration.GetValue<string>("StorageAccountConnectionString");
-
-                    // Defaulting this value to true because the main app should ensure all
-                    // tables exist. It is here as a possible configuration setting in
-                    // case it needs to be set differently.
-                    repositoryOptions.EnsureTableExists =
-                        !configuration.GetValue<bool>("IsItExpectedThatTableAlreadyExists", true);
-                });
+            builder.Services.AddRepositoryOptions();
 
             builder.Services.AddLocalization();
 
