@@ -14,6 +14,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Extensions
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Options;
     using Microsoft.Identity.Client;
+    using Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories;
     using Microsoft.Teams.Apps.CompanyCommunicator.Common.Secrets;
     using Microsoft.Teams.Apps.CompanyCommunicator.Common.Services.CommonBot;
 
@@ -48,10 +49,14 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Extensions
             else
             {
                 // Add using connection strings.
-                services.AddSingleton(sp => new BlobContainerClient(
-                sp.GetService<IConfiguration>().GetValue<string>("StorageAccountConnectionString"),
-                Common.Constants.BlobContainerName,
-                options));
+                services.AddSingleton(sp =>
+                {
+                    var repositoryOptions = sp.GetRequiredService<IOptions<RepositoryOptions>>().Value;
+                    return new BlobContainerClient(
+                        repositoryOptions.BlobStorageAccountConnectionString,
+                        Common.Constants.BlobContainerName,
+                        options);
+                });
             }
         }
 
