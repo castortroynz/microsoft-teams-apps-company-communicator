@@ -173,7 +173,7 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
             selectedTeamsNum: 0,
             selectedRostersNum: 0,
             selectedGroupsNum: 0,
-            selectedRadioBtn: "csv",
+            selectedRadioBtn: "teams",
             selectedTeams: [],
             selectedRosters: [],
             selectedGroups: [],
@@ -782,8 +782,7 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
                                             checkedValue={this.state.selectedRadioBtn}
                                             onCheckedValueChange={this.onGroupSelected}
                                             vertical={true}
-                                            items={[
-                                                /**
+                                            items={[                                                
                                                 {
                                                     name: "teams",
                                                     key: "teams",
@@ -866,7 +865,8 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
                                                     key: "groups",
                                                     value: "groups",
                                                     label: this.localize("SendToGroups"),
-                                                    checked: (this.targetingEnabled && !isMaster),
+                                                    //checked: (this.targetingEnabled && !isMaster),
+                                                    disabled: (this.targetingEnabled && !isMaster),
                                                     children: (Component, { name, ...props }) => {
                                                         if (this.targetingEnabled && !isMaster) {
                                                             this.setAuthorizedGroupItems();
@@ -919,12 +919,12 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
                                                             )
                                                         }
                                                     },
-                                                },
-                                                */
+                                                },                                                
                                                 {
                                                     name: "csv",
                                                     key: "csv",
                                                     //disabled: (this.targetingEnabled && !isMaster),
+                                                    checked: (this.targetingEnabled && !isMaster),
                                                     value: "csv",
                                                     label: this.localize("SendToCSV"),
                                                     children: (Component, { name, ...props }) => {
@@ -1057,14 +1057,12 @@ class NewMessage extends React.Component<INewMessageProps, formState> {
     //the targetingmode and if the user is a master admin or not
     private radioControl() {
 
-        var opName = "csv";
+        var opName = "teams";
         var isMaster = this.isMasterAdmin(this.masterAdminUpns, this.state.userPrincipalName);
 
-        /**
         if (this.targetingEnabled && !isMaster) {
-            opName = "groups";
+            opName = "csv";
         }
-        */
         
         this.setState({
             selectedRadioBtn: opName,
