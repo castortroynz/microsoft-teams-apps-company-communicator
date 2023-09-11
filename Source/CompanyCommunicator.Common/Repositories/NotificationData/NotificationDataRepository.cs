@@ -18,6 +18,8 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
     /// </summary>
     public class NotificationDataRepository : BaseRepository<NotificationDataEntity>, INotificationDataRepository
     {
+        private readonly int maxSentNotificationsCount;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationDataRepository"/> class.
         /// </summary>
@@ -36,6 +38,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
                   ensureTableExists: repositoryOptions.Value.EnsureTableExists)
         {
             this.TableRowKeyGenerator = tableRowKeyGenerator;
+            this.maxSentNotificationsCount = repositoryOptions.Value.MaxSentNotificationsCount;
         }
 
         /// <inheritdoc/>
@@ -45,7 +48,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
         public async Task<IEnumerable<NotificationDataEntity>> GetAllDraftNotificationsAsync()
         {
             string strFilter = TableQuery.GenerateFilterConditionForBool("IsScheduled", QueryComparisons.Equal, false);
-            var result = await this.GetWithFilterAsync(strFilter, NotificationDataTableNames.DraftNotificationsPartition);
+            var result = await this.GetWithFilterAsync(strFilter, NotificationDataTableNames.DraftNotificationsPartition, orderBy: "CreatedDate desc");
 
             return result;
         }
@@ -113,7 +116,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
         /// <inheritdoc/>
         public async Task<IEnumerable<NotificationDataEntity>> GetMostRecentSentNotificationsAsync()
         {
-            var result = await this.GetAllAsync(NotificationDataTableNames.SentNotificationsPartition, 20);
+            var result = await this.GetAllAsync(NotificationDataTableNames.SentNotificationsPartition, this.maxSentNotificationsCount, "SendingStartedDate desc");
 
             return result;
         }

@@ -13,8 +13,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryOptions"/> class.
         /// </summary>
-        public RepositoryOptions()
-        {
+        public RepositoryOptions() {
             // Default this option to true as ensuring the table exists is technically
             // more robust.
             this.EnsureTableExists = true;
@@ -36,5 +35,10 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories
         /// if it does not already exist.
         /// </summary>
         public bool EnsureTableExists { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating tha maximum number of sent notifications to retrieve from storage.
+        /// </summary>
+        public int MaxSentNotificationsCount { get; set; }
     }
 }

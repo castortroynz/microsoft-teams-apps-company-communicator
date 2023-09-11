@@ -57,8 +57,9 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories
         /// <param name="filter">Filter to the result.</param>
         /// <param name="partition">Partition key value.</param>
         /// <param name="count">The max number of desired entities.</param>
+        /// <param name="orderBy">One column name to order by, "colunmName desc" for descending. </param>
         /// <returns>All data entities.</returns>
-        public Task<IEnumerable<T>> GetWithFilterAsync(string filter, string partition = null, int? count = null);
+        public Task<IEnumerable<T>> GetWithFilterAsync(string filter, string partition = null, int? count = null, string orderBy = null);
 
         /// <summary>
         /// Get entities from the table storage with a filter.
@@ -72,8 +73,9 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories
         /// </summary>
         /// <param name="partition">Partition key value.</param>
         /// <param name="count">The max number of desired entities.</param>
+        /// <param name="orderBy">One column name to order by, "colunmName desc" for descending. </param>
         /// <returns>All data entities.</returns>
-        public Task<IEnumerable<T>> GetAllAsync(string partition = null, int? count = null);
+        public Task<IEnumerable<T>> GetAllAsync(string partition = null, int? count = null, string orderBy = null);
 
         /// <summary>
         /// Get paged data entities from the table storage in a partition.

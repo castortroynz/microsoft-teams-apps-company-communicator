@@ -21,7 +21,9 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories
                 {
                     settings.BlobStorageAccountConnectionString = settings.StorageAccountConnectionString;
                 }
+
                 settings.EnsureTableExists = !configuration.GetValue<bool>("IsItExpectedThatTableAlreadyExists", isItExpectedThatTableAlreadyExists);
+                settings.MaxSentNotificationsCount = configuration.GetValue<int>("MaxSentNotificationsCount", 20);
             });
             return services;
         }

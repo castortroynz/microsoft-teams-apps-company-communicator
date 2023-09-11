@@ -136,13 +136,27 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<T>> GetWithFilterAsync(string filter, string partition = null, int? count = null)
+        public async Task<IEnumerable<T>> GetWithFilterAsync(string filter, string partition = null, int? count = null, string orderBy = null)
         {
             try
             {
                 var partitionKeyFilter = this.GetPartitionKeyFilter(partition);
                 var combinedFilter = this.CombineFilters(filter, partitionKeyFilter);
                 var query = new TableQuery<T>().Where(combinedFilter);
+
+                if (!string.IsNullOrEmpty(orderBy))
+                {
+                    if (orderBy.EndsWith(" desc"))
+                    {
+                        orderBy = orderBy.Substring(0, orderBy.Length - 5);
+                        query = query.OrderByDesc(orderBy);
+                    }
+                    else
+                    {
+                        query = query.OrderBy(orderBy);
+                    }
+                }
+
                 var entities = await this.ExecuteQueryAsync(query, count);
                 return entities;
             }
@@ -170,12 +184,26 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<T>> GetAllAsync(string partition = null, int? count = null)
+        public async Task<IEnumerable<T>> GetAllAsync(string partition = null, int? count = null, string orderBy = null)
         {
             try
             {
                 var partitionKeyFilter = this.GetPartitionKeyFilter(partition);
                 var query = new TableQuery<T>().Where(partitionKeyFilter);
+
+                if (!string.IsNullOrEmpty(orderBy))
+                {
+                    if (orderBy.EndsWith(" desc"))
+                    {
+                        orderBy = orderBy.Substring(0, orderBy.Length - 5);
+                        query = query.OrderByDesc(orderBy);
+                    }
+                    else
+                    {
+                        query = query.OrderBy(orderBy);
+                    }
+                }
+
                 var entities = await this.ExecuteQueryAsync(query, count);
                 return entities;
             }
