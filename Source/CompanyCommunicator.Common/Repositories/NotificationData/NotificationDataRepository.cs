@@ -126,7 +126,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
         {
             string strFilter = TableQuery.GenerateFilterCondition("ChannelId", QueryComparisons.Equal, channelId);
 
-            var result = await this.GetWithFilterAsync(strFilter, NotificationDataTableNames.SentNotificationsPartition, 20);
+            var result = await this.GetWithFilterAsync(strFilter, NotificationDataTableNames.SentNotificationsPartition, this.maxSentNotificationsCount);
 
             return result;
         }
