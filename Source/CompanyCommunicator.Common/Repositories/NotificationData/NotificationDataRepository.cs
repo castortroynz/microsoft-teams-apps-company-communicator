@@ -80,7 +80,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
             string strFilter2 = TableQuery.GenerateFilterCondition("ChannelId", QueryComparisons.Equal, channelId);
             string strFilter = TableQuery.CombineFilters(strFilter1, TableOperators.And, strFilter2);
 
-            var result = await this.GetWithFilterAsync(strFilter, NotificationDataTableNames.DraftNotificationsPartition);
+            var result = await this.GetWithFilterAsync(strFilter, NotificationDataTableNames.DraftNotificationsPartition, orderBy: "CreatedDate desc");
 
             return result;
         }
@@ -126,7 +126,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator.Common.Repositories.Notificat
         {
             string strFilter = TableQuery.GenerateFilterCondition("ChannelId", QueryComparisons.Equal, channelId);
 
-            var result = await this.GetWithFilterAsync(strFilter, NotificationDataTableNames.SentNotificationsPartition, this.maxSentNotificationsCount);
+            var result = await this.GetWithFilterAsync(strFilter, NotificationDataTableNames.SentNotificationsPartition, this.maxSentNotificationsCount, "SendingStartedDate desc");
 
             return result;
         }
